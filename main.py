@@ -1,5 +1,4 @@
 import os
-import asyncio
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 
@@ -10,13 +9,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🎉 Welcome to Quick Cash Earn\n\nBot is running successfully."
     )
 
-async def run_bot():
-    app = Application.builder().token(BOT_TOKEN).build()
-
-    app.add_handler(CommandHandler("start", start))
-
-    print("Bot Started...")
-    await app.run_polling()
+app = Application.builder().token(BOT_TOKEN).build()
+app.add_handler(CommandHandler("start", start))
 
 if __name__ == "__main__":
-    asyncio.run(run_bot())
+    print("Bot Started...")
+    app.run_polling()
